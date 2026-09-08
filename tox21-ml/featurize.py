@@ -3,6 +3,9 @@ from rdkit.Chem import Descriptors, Lipinski
 import pandas as pd
 df = pd.read_csv('tox21_raw.csv')
 
+from sklearn.model_selection import train_test_split
+
+
 def get_descriptors(smiles):
     mol = Chem.MolFromSmiles(smiles)
     if mol is None:
@@ -35,3 +38,17 @@ for _, row in tested_df.iterrows():
 
 print(len(records))
 print(records[0])
+
+features_df = pd.DataFrame(records)
+print(features_df)
+
+X = features_df.drop(columns=["mol_id", "SR-p53"])
+y = features_df["SR-p53"]
+
+print(X.shape) 
+print(y.shape) 
+
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42, stratify=y)
+
+print(X_train.shape, X_test.shape)
+print(y_train.mean(), y_test.mean())
