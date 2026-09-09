@@ -4,6 +4,7 @@ import pandas as pd
 df = pd.read_csv('tox21_raw.csv')
 
 from sklearn.model_selection import train_test_split
+from sklearn.linear_model import LogisticRegression
 
 
 def get_descriptors(smiles):
@@ -52,3 +53,9 @@ X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_
 
 print(X_train.shape, X_test.shape)
 print(y_train.mean(), y_test.mean())
+
+model = LogisticRegression()
+model.fit(X_train, y_train)
+
+print(model.coef_)
+print(model.intercept_)
