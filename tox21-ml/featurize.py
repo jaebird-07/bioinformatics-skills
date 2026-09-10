@@ -9,6 +9,9 @@ from sklearn.linear_model import LogisticRegression
 from sklearn.preprocessing import StandardScaler
 scaler = StandardScaler()
 
+from sklearn.metrics import accuracy_score
+
+
 def get_descriptors(smiles):
     mol = Chem.MolFromSmiles(smiles)
     if mol is None:
@@ -68,3 +71,11 @@ X_test_scaled = scaler.transform(X_test)
 model.fit(X_train_scaled, y_train)
 print(model.coef_)
 print(model.intercept_)
+
+y_pred = model.predict(X_test_scaled)
+accuracy_score(y_test, y_pred)
+
+print(y_pred.sum())
+
+print(y_test.sum())
+len(X_test_scaled) 
