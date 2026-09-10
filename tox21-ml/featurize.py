@@ -82,3 +82,7 @@ len(X_test_scaled)
 
 correct = ((y_pred == 1) & (y_test == 1)).sum()
 print(correct)
+
+
+model_balanced = LogisticRegression(class_weight='balanced')
+model_balanced.fit(X_train_scaled, y_train)
