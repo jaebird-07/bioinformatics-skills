@@ -86,3 +86,10 @@ print(correct)
 
 model_balanced = LogisticRegression(class_weight='balanced')
 model_balanced.fit(X_train_scaled, y_train)
+
+y_pred_balanced = model_balanced.predict(X_test_scaled)
+print(y_pred_balanced.sum())
+print(accuracy_score(y_test, y_pred_balanced))
+
+correctly_caught = ((y_pred_balanced == 1) & (y_test == 1)).sum()
+print(correctly_caught)
