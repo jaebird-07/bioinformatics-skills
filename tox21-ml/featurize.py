@@ -6,6 +6,8 @@ df = pd.read_csv('tox21_raw.csv')
 from sklearn.model_selection import train_test_split
 from sklearn.linear_model import LogisticRegression
 
+from sklearn.preprocessing import StandardScaler
+scaler = StandardScaler()
 
 def get_descriptors(smiles):
     mol = Chem.MolFromSmiles(smiles)
@@ -57,5 +59,12 @@ print(y_train.mean(), y_test.mean())
 model = LogisticRegression()
 model.fit(X_train, y_train)
 
+print(model.coef_)
+print(model.intercept_)
+
+X_train_scaled = scaler.fit_transform(X_train)
+X_test_scaled = scaler.transform(X_test)
+
+model.fit(X_train_scaled, y_train)
 print(model.coef_)
 print(model.intercept_)
