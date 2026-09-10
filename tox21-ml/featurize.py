@@ -79,3 +79,6 @@ print(y_pred.sum())
 
 print(y_test.sum())
 len(X_test_scaled) 
+
+correct = ((y_pred == 1) & (y_test == 1)).sum()
+print(correct)
