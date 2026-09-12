@@ -10,6 +10,7 @@ from sklearn.preprocessing import StandardScaler
 scaler = StandardScaler()
 
 from sklearn.metrics import accuracy_score
+from sklearn.metrics import roc_curve, roc_auc_score
 
 
 def get_descriptors(smiles):
@@ -105,3 +106,6 @@ FN = ((y_pred_thresh == 0) & (y_test == 1)).sum()
 
 TPR = TP / (TP + FN)
 FPR = FP / (FP + TN)
+
+fpr, tpr, thresholds = roc_curve(y_test, y_scores)
+auc = roc_auc_score(y_test, y_scores)
