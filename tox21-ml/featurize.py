@@ -97,3 +97,11 @@ print(correctly_caught)
 y_scores_both = model.predict_proba(X_test_scaled)
 y_scores = model.predict_proba(X_test_scaled)[:, 1]
 print(y_scores)
+
+TP = ((y_pred_thresh == 1) & (y_test == 1)).sum()
+FP = ((y_pred_thresh == 1) & (y_test == 0)).sum()
+TN = ((y_pred_thresh == 0) & (y_test == 0)).sum()
+FN = ((y_pred_thresh == 0) & (y_test == 1)).sum()
+
+TPR = TP / (TP + FN)
+FPR = FP / (FP + TN)
