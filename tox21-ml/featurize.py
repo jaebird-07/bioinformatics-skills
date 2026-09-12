@@ -109,3 +109,5 @@ FPR = FP / (FP + TN)
 
 fpr, tpr, thresholds = roc_curve(y_test, y_scores)
 auc = roc_auc_score(y_test, y_scores)
+print(fpr, tpr, thresholds)
+print(auc)
